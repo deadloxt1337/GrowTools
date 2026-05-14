@@ -401,6 +401,16 @@ function process_item_encoder(result, using_txt) {
                     write_buffer_number(mem_pos, 1, result1[54])
                     mem_pos += 1;
                 }
+                if (version >= 25) {
+                    write_buffer_number(mem_pos, 2, result1[55].length);
+                    mem_pos += 2;
+                    write_buffer_string(mem_pos, result1[55].length, result1[55])
+                    mem_pos += result1[55].length
+                }
+                if (version >= 26) {
+                    write_buffer_number(mem_pos, 5, result1[56])
+                    mem_pos += 5;
+                }
             }
         }
     } else {
@@ -561,6 +571,16 @@ function process_item_encoder(result, using_txt) {
             if (result.version >= 24) {
                 write_buffer_number(mem_pos, 1, result.items[a].int_version_24)
                 mem_pos += 1;
+            }
+            if (result.version >= 25) {
+                write_buffer_number(mem_pos, 2, result.items[a].str_version_25.length);
+                mem_pos += 2;
+                write_buffer_string(mem_pos, result.items[a].str_version_25.length, result.items[a].str_version_25)
+                mem_pos += result.items[a].str_version_25.length
+            }
+            if (result.version >= 26) {
+                write_buffer_number(mem_pos, 5, result.items[a].int_version_26)
+                mem_pos += 5;
             }
         }
     }
@@ -820,6 +840,18 @@ function item_decoder(file, using_editor) {
             if (version >= 24) {
                 var int_version_24 = read_buffer_number(arrayBuffer, mem_pos, 1)
                 mem_pos += 1;
+            }
+
+            if (version >= 25) {
+                len = read_buffer_number(arrayBuffer, mem_pos, 2)
+                mem_pos += 2;
+                var str_version_25 = read_buffer_string(arrayBuffer, mem_pos, len);
+                mem_pos += len
+            }
+
+            if (version >= 26) {
+                var int_version_26 = read_buffer_number(arrayBuffer, mem_pos, 5)
+                mem_pos += 5;
             }
 
             if (item_id != a) console.log(`Unordered Items at ${a}`)
