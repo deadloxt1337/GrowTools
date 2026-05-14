@@ -1,4 +1,4 @@
-# GrowTools with version 24 support
+# GrowTools with version 26 support
 A Growtopia Tools (GrowTools) and Image Tools website!<br>
 You can use this tools by visit this website: https://gucktubeyt.github.io/GrowTools or, you can use short link: https://bit.ly/gtoolsweb
 
