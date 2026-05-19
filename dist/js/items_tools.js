@@ -927,6 +927,8 @@ function item_decoder(file, using_editor) {
             data_json.items[a].str_version_22 = str_version_22
             data_json.items[a].int_version_23 = int_version_23
             data_json.items[a].int_version_24 = int_version_24
+            data_json.items[a].str_version_25 = str_version_25
+            data_json.items[a].int_version_26 = int_version_26
         }
         if (using_editor) {
             if (!$.fn.dataTable.isDataTable("#itemsList")) {
@@ -1032,6 +1034,8 @@ function editItems(posArray) {
     document.getElementById("str_version_22").value = data_json.items[posArray].str_version_22
     document.getElementById("int_version_23").value = data_json.items[posArray].int_version_23
     document.getElementById("int_version_24").value = data_json.items[posArray].int_version_24
+    document.getElementById("str_version_25").value = data_json.items[posArray].str_version_25
+    document.getElementById("int_version_26").value = data_json.items[posArray].int_version_26
     document.getElementById("editItemsButton").setAttribute("onclick", `processEditItems(${posArray})`)
 }
 
@@ -1101,5 +1105,7 @@ function processEditItems(posArray) {
     data_json.items[posArray].str_version_22 = document.getElementById("str_version_22").value
     data_json.items[posArray].int_version_23 = document.getElementById("int_version_23").value
     data_json.items[posArray].int_version_24 = document.getElementById("int_version_24").value
+    data_json.items[posArray].str_version_25 = document.getElementById("str_version_25").value
+    data_json.items[posArray].int_version_26 = document.getElementById("int_version_26").value
     $("#modal-editItems").modal("hide")
 }
